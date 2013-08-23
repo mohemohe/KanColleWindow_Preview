@@ -298,14 +298,7 @@ namespace KanColle
         {
             form2.Close();
 
-            bool success = cv.writeSettings();
-
-            if (success == false)
-            {
-                MessageBox.Show("フォルダに書き込み権限がありません。\n書き込み可能なフォルダで実行してください。\n\n設定は全て破棄されます。");
-
-                Environment.Exit(0);
-            }
+            saveSettings();
 
             form2.Dispose();
 
@@ -440,6 +433,19 @@ namespace KanColle
 
             twitter_auth = globVal._twitter_auth;
         }
+
+        private void saveSettings()
+        {
+            bool success = cv.writeSettings();
+
+            if (success == false)
+            {
+                MessageBox.Show("フォルダに書き込み権限がありません。\n書き込み可能なフォルダで実行してください。\n\n設定は全て破棄されます。");
+
+                Environment.Exit(0);
+            }
+        }
+
         //読み込み後のURIの振り分け、フォームのサイズ変更
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
@@ -643,6 +649,8 @@ namespace KanColle
 
         private void 艦これの再起動ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            saveSettings();
+
             Application.Restart();
             Environment.Exit(0);
         }
