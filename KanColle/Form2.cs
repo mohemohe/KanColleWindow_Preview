@@ -472,9 +472,9 @@ namespace KanColle
         }
 
         //別スレッドの計算開始
-        private void timer1_Tick(object sender, EventArgs e)
+        private async void timer1_Tick(object sender, EventArgs e)
         {
-            Parallel.Invoke(() => calcRemain());
+            await TaskEx.Run(() => calcRemain());
             applyLabel();
         }
 
