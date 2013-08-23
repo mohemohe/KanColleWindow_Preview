@@ -134,7 +134,7 @@ namespace KanColle
                 
             }
 
-            timer1.Interval = 500;
+            timer1.Interval = 1000;
             timer1.Start();
         }
 
