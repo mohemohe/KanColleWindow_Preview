@@ -73,7 +73,7 @@ namespace KanColle
         #endregion
 
         //post
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             buttonsDisable();
 
@@ -81,7 +81,7 @@ namespace KanColle
 
             try
             {
-                Parallel.Invoke(() => service.SendTweet(new SendTweetOptions { Status = textBox1.Text }));
+                await TaskEx.Run(() => service.SendTweet(new SendTweetOptions { Status = textBox1.Text }));
 
                 textBox1.Text = "";
             }
@@ -217,7 +217,7 @@ namespace KanColle
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private async void button4_Click(object sender, EventArgs e)
         {
             if (textBox2.Text != "")
             {
@@ -229,7 +229,7 @@ namespace KanColle
                 {
                     imgPath = textBox2.Text;
 
-                    Parallel.Invoke(() => imgUri = uploadImage(imgPath));
+                    await TaskEx.Run(() => imgUri = uploadImage(imgPath));
 
                     textBox1.Text += " " + imgUri;
                 }
