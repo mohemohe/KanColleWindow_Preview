@@ -73,7 +73,7 @@ namespace KanColle
         #endregion
 
         //post
-        private async void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             buttonsDisable();
 
@@ -81,8 +81,12 @@ namespace KanColle
 
             try
             {
-                await TaskEx.Run(() => service.SendTweet(new SendTweetOptions { Status = textBox1.Text }));
+                var task = new Task(() =>
+                {
+                    service.SendTweet(new SendTweetOptions { Status = textBox1.Text });
+                });
 
+                task.Start();
                 textBox1.Text = "";
             }
             catch (Exception)
@@ -217,7 +221,7 @@ namespace KanColle
             }
         }
 
-        private async void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
             if (textBox2.Text != "")
             {
@@ -229,8 +233,15 @@ namespace KanColle
                 {
                     imgPath = textBox2.Text;
 
-                    await TaskEx.Run(() => imgUri = uploadImage(imgPath));
+                    var task = new Task<string>(() =>
+                    {
+                        string _imgUri = uploadImage(imgPath);
+                        return _imgUri;
+                    });
 
+                    task.Start();
+
+                    imgUri = task.Result.ToString();
                     textBox1.Text += " " + imgUri;
                 }
                 catch
