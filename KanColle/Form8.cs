@@ -81,22 +81,22 @@ namespace KanColle
 
             try
             {
-                var task = new Task(() =>
+                Task.Factory.StartNew(() => service.SendTweet(new SendTweetOptions { Status = textBox1.Text }))
+                .ContinueWith(_ =>
                 {
-                    service.SendTweet(new SendTweetOptions { Status = textBox1.Text });
-                });
+                    textBox1.Text = "";
+                    toolStripStatusLabel1.Text = "完了しました";
 
-                task.Start();
-                textBox1.Text = "";
+                    buttonsEnable();
+                }
+                , TaskScheduler.FromCurrentSynchronizationContext());
             }
             catch (Exception)
             {
 
             }
 
-            toolStripStatusLabel1.Text = "完了しました";
-
-            buttonsEnable();
+            
         }
 
         string uploadImage(string path)
@@ -233,16 +233,17 @@ namespace KanColle
                 {
                     imgPath = textBox2.Text;
 
-                    var task = new Task<string>(() =>
+                    Task.Factory.StartNew(() => imgUri = uploadImage(imgPath))
+                    .ContinueWith(_ =>
                     {
-                        string _imgUri = uploadImage(imgPath);
-                        return _imgUri;
-                    });
+                        textBox1.Text += " " + imgUri;
+                        textBox2.Text = "";
 
-                    task.Start();
+                        toolStripStatusLabel1.Text = "画像のアップロードが完了しました";
 
-                    imgUri = task.Result.ToString();
-                    textBox1.Text += " " + imgUri;
+                        buttonsEnable();
+                    }
+                    , TaskScheduler.FromCurrentSynchronizationContext());
                 }
                 catch
                 {
@@ -250,13 +251,7 @@ namespace KanColle
                     buttonsEnable();
 
                     return;
-                }
-
-                textBox2.Text = "";
-
-                toolStripStatusLabel1.Text = "画像のアップロードが完了しました";
-
-                buttonsEnable();
+                }   
             }
         } 
 

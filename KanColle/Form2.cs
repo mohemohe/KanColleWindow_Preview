@@ -474,13 +474,12 @@ namespace KanColle
         //別スレッドの計算開始
         private void timer1_Tick(object sender, EventArgs e)
         {
-            var task = new Task(() =>
-            {
-                calcRemain();
-            });
-
-            task.Start();
-            applyLabel();
+            Task.Factory.StartNew(() => calcRemain())
+                .ContinueWith(_ =>
+                {
+                    applyLabel();
+                }
+                , TaskScheduler.FromCurrentSynchronizationContext());    
         }
 
         //残り時間を計算
