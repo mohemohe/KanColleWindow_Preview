@@ -551,7 +551,7 @@ namespace KanColle
                 if (spantime2 > tsnull)
                 {
                     label2.ForeColor = Color.Black;
-                    label2.Text = spantime2.ToString("hh\\:mm\\:ss") + "\n" + name2;
+                    label2.Text = time2string(spantime2) + "\n" + name2;
                     
                     waitPlay2 = true;
                 }
@@ -575,7 +575,7 @@ namespace KanColle
                 if (spantime4 > tsnull)
                 {
                     label4.ForeColor = Color.Black;
-                    label4.Text = spantime4.ToString("hh\\:mm\\:ss") + "\n" + name4;
+                    label4.Text = time2string(spantime4) + "\n" + name4;
                     
                     waitPlay4 = true;
                 }
@@ -599,7 +599,7 @@ namespace KanColle
                 if (spantime6 > tsnull)
                 {
                     label6.ForeColor = Color.Black;
-                    label6.Text = spantime6.ToString("hh\\:mm\\:ss") + "\n" + name6;
+                    label6.Text = time2string(spantime6) + "\n" + name6;
 
                     waitPlay6 = true;
                 }
@@ -623,7 +623,7 @@ namespace KanColle
                 if (spantime8 > tsnull)
                 {
                     label8.ForeColor = Color.Black;
-                    label8.Text = spantime8.ToString("hh\\:mm\\:ss");
+                    label8.Text = time2string(spantime8);
 
                     waitPlay8 = true;
                 }
@@ -647,7 +647,7 @@ namespace KanColle
                 if (spantime9 > tsnull)
                 {
                     label9.ForeColor = Color.Black;
-                    label9.Text = spantime9.ToString("hh\\:mm\\:ss");
+                    label9.Text = time2string(spantime9);
 
                     waitPlay9 = true;
                 }
@@ -671,7 +671,7 @@ namespace KanColle
                 if (spantime11 > tsnull)
                 {
                     label11.ForeColor = Color.Black;
-                    label11.Text = spantime11.ToString("hh\\:mm\\:ss");
+                    label11.Text = time2string(spantime11);
 
                     waitPlay11 = true;
                 }
@@ -695,7 +695,7 @@ namespace KanColle
                 if (spantime13 > tsnull)
                 {
                     label13.ForeColor = Color.Black;
-                    label13.Text = spantime13.ToString("hh\\:mm\\:ss");
+                    label13.Text = time2string(spantime13);
 
                     waitPlay13 = true;
                 }
@@ -719,7 +719,7 @@ namespace KanColle
                 if (spantime22 > tsnull)
                 {
                     label22.ForeColor = Color.Black;
-                    label22.Text = spantime22.ToString("hh\\:mm\\:ss");
+                    label22.Text = time2string(spantime22);
 
                     waitPlay22 = true;
                 }
@@ -743,7 +743,7 @@ namespace KanColle
                 if (spantime20 > tsnull)
                 {
                     label20.ForeColor = Color.Black;
-                    label20.Text = spantime20.ToString("hh\\:mm\\:ss");
+                    label20.Text = time2string(spantime20);
 
                     waitPlay20 = true;
                 }
@@ -767,7 +767,7 @@ namespace KanColle
                 if (spantime18 > tsnull)
                 {
                     label18.ForeColor = Color.Black;
-                    label18.Text = spantime18.ToString("hh\\:mm\\:ss");
+                    label18.Text = time2string(spantime18);
 
                     waitPlay18 = true;
                 }
@@ -791,7 +791,7 @@ namespace KanColle
                 if (spantime16 > tsnull)
                 {
                     label16.ForeColor = Color.Black;
-                    label16.Text = spantime16.ToString("hh\\:mm\\:ss");
+                    label16.Text = time2string(spantime16);
 
                     waitPlay16 = true;
                 }
@@ -808,6 +808,22 @@ namespace KanColle
 
                     waitPlay16 = false;
                 }
+            }
+        }
+
+        string time2string(TimeSpan ts)
+        {
+            if (ts.TotalDays >= 1)
+            {
+                int hour = (int)ts.Hours + (ts.Days * 24);
+                int min = (int)ts.Minutes;
+                int sec = (int)ts.Seconds;
+
+                return hour.ToString("00") + ":" + min.ToString("00") + ":" + sec.ToString("00");
+            }
+            else
+            {
+                return ts.ToString("hh\\:mm\\:ss");
             }
         }
 
