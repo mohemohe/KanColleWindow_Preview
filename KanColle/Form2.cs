@@ -487,60 +487,94 @@ namespace KanColle
         {
             now = DateTime.Now;
 
-            if (datetime2 != dtnull)
+            Parallel.Invoke(
+            () =>
             {
-                spantime2 = datetime2 - now;
-            }
+                if (datetime2 != dtnull)
+                {
+                    spantime2 = datetime2 - now;
+                }
+            },
 
-            if (datetime4 != dtnull)
+            () =>
             {
-                spantime4 = datetime4 - now;
-            }
+                if (datetime4 != dtnull)
+                {
+                    spantime4 = datetime4 - now;
+                }
+            },
 
-            if (datetime6 != dtnull)
+            () =>
             {
-                spantime6 = datetime6 - now;
-            }
+                if (datetime6 != dtnull)
+                {
+                    spantime6 = datetime6 - now;
+                }
+            },
 
-            if (datetime8 != dtnull)
+            () =>
             {
-                spantime8 = datetime8 - now;
-            }
+                if (datetime8 != dtnull)
+                {
+                    spantime8 = datetime8 - now;
+                }
+            },
 
-            if (datetime9 != dtnull)
+            () =>
             {
-                spantime9 = datetime9 - now;
-            }
+                if (datetime9 != dtnull)
+                {
+                    spantime9 = datetime9 - now;
+                }
+            },
 
-            if (datetime11 != dtnull)
+            () =>
             {
-                spantime11 = datetime11 - now;
-            }
+                if (datetime11 != dtnull)
+                {
+                    spantime11 = datetime11 - now;
+                }
+            },
 
-            if (datetime13 != dtnull)
+            () =>
             {
-                spantime13 = datetime13 - now;
-            }
+                if (datetime13 != dtnull)
+                {
+                    spantime13 = datetime13 - now;
+                }
+            },
 
-            if (datetime22 != dtnull)
+            () =>
             {
-                spantime22 = datetime22 - now;
-            }
+                if (datetime22 != dtnull)
+                {
+                    spantime22 = datetime22 - now;
+                }
+            },
 
-            if (datetime20 != dtnull)
+            () =>
             {
-                spantime20 = datetime20 - now;
-            }
+                if (datetime20 != dtnull)
+                {
+                    spantime20 = datetime20 - now;
+                }
+            },
 
-            if (datetime18 != dtnull)
+            () =>
             {
-                spantime18 = datetime18 - now;
-            }
+                if (datetime18 != dtnull)
+                {
+                    spantime18 = datetime18 - now;
+                }
+            },
 
-            if (datetime16 != dtnull)
+            () =>
             {
-                spantime16 = datetime16 - now;
-            }
+                if (datetime16 != dtnull)
+                {
+                    spantime16 = datetime16 - now;
+                }
+            });
         }
 
         //labelに反映
