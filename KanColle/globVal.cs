@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -46,6 +47,8 @@ namespace KanColle
         public static string _twitter_secret;
         public static string _twitter_token;
         public static string _twitter_t_secret;
+        //public static ArrayList _twitter_hashtag = new ArrayList();
+        public static ArrayList _twitter_hashtag;
 
         public static bool _playSound = true;
         public static string _soundPath1;
@@ -107,6 +110,8 @@ namespace KanColle
             _twitter_secret = Encrypt.DecryptString(settings.twitter_secret);
             _twitter_token = Encrypt.DecryptString(settings.twitter_token);
             _twitter_t_secret = Encrypt.DecryptString(settings.twitter_t_secret);
+            _twitter_hashtag = settings.twitter_hashtag;
+                //for (int i = 0; i <= settings.twitter_hashtag.Length - 1; i++) _twitter_hashtag.Add(settings.twitter_hashtag[i]);
 
             //簡易タイマー
             moveForm2 = settings.moveTimer;
@@ -161,8 +166,15 @@ namespace KanColle
                     
                 }
             }
-            
-            
+            //try{
+            //    for(int i = 3; i <= _twitter_hashtag.Count - 1; i++) settings.twitter_hashtag
+            //}
+            //catch (Exception)
+            //{
+            //    
+            //}
+            settings.twitter_hashtag = _twitter_hashtag;
+
             //簡易タイマー
             settings.moveTimer = moveForm2;
             settings.playSound = _playSound;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,7 @@ namespace KanColle
         private string _twitter_secret = "null";
         private string _twitter_token = "null";
         private string _twitter_t_secret = "null";
+        private ArrayList _twitter_hashtag;
 
         private bool _playSound;
         private string _soundPath1;
@@ -140,6 +142,12 @@ namespace KanColle
         {
             get { return _twitter_t_secret; }
             set { _twitter_t_secret = value; }
+        }
+
+        public ArrayList twitter_hashtag
+        {
+            get { return _twitter_hashtag; }
+            set { _twitter_hashtag = value; }
         }
 
         public bool playSound
