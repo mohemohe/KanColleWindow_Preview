@@ -57,7 +57,7 @@ namespace KanColle
 
         private static void GenerateKeyFromPassword(string password, int keySize, out byte[] key, int blockSize, out byte[] iv)
         {
-            byte[] bytes = Encoding.UTF8.GetBytes("saltは必ず8バイト以上");
+            byte[] bytes = Encoding.UTF8.GetBytes("ここの文字列はダミーに置き換えています");
             Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, bytes);
             rfc2898DeriveBytes.IterationCount = 1000;
             key = rfc2898DeriveBytes.GetBytes(keySize / 8);
